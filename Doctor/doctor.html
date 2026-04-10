@@ -1,0 +1,524 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaChain - Complete Appointment System</title>
+    <!-- Bootstrap 5 + icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="doctor.css">
+</head>
+<body>
+    <div class="container py-4">
+        <!-- header -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold" style="color: #1a2b4c;"><i class="fas fa-user-md me-2" style="color: #0d6efd;"></i>Doctors</h2>
+            <div class="d-flex gap-2">
+                <button class="btn btn-outline-secondary rounded-pill px-4" id="toggleSearchBtn"><i class="fas fa-search me-2"></i>Search</button>
+                <button class="btn btn-success rounded-pill px-4" id="bookAppointmentHeaderBtn" data-bs-toggle="modal" data-bs-target="#bookingSpecialtyModal"><i class="fas fa-calendar-plus me-2"></i>Book</button>
+                <button class="btn btn-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#doctorModal"><i class="fas fa-plus me-2"></i>Add</button>
+            </div>
+        </div>
+
+        <!-- search row -->
+        <div class="search-section d-none justify-content-between align-items-center mb-4" id="globalSearchRow">
+            <div class="flex-grow-1 me-3">
+                <input type="text" class="form-control form-control-lg rounded-pill" id="globalSearchInput" placeholder="Search by name, specialty, hospital...">
+            </div>
+            <button class="btn btn-primary rounded-pill px-5" id="globalSearchGo">Go</button>
+        </div>
+
+        <!-- statistics -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-3"><div class="card dashboard-card p-3"><div class="card-body text-center"><i class="fas fa-user-md fs-1 text-primary"></i><h3 id="totalDoctors">8</h3><p class="text-muted">Total Doctors</p></div></div></div>
+            <div class="col-md-3"><div class="card dashboard-card p-3"><div class="card-body text-center"><i class="fas fa-check-circle fs-1 text-success"></i><h3 id="activeDoctors">5</h3><p class="text-muted">Active</p></div></div></div>
+            <div class="col-md-3"><div class="card dashboard-card p-3"><div class="card-body text-center"><i class="fas fa-clock fs-1 text-warning"></i><h3 id="onLeaveDoctors">2</h3><p class="text-muted">On Leave</p></div></div></div>
+            <div class="col-md-3"><div class="card dashboard-card p-3"><div class="card-body text-center"><i class="fas fa-calendar-check fs-1 text-info"></i><h3 id="totalAppointments">212</h3><p class="text-muted">Appointments</p></div></div></div>
+        </div>
+
+        <section class="doctor-profile-dashboard mb-5 d-none" id="doctorProfileDashboard">
+            <div class="profile-dashboard-head d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
+                <div>
+                    <h3 class="mb-1">Professional Doctor Profile Dashboard</h3>
+                    <p class="text-muted mb-0">Complete and review your onboarding profile details.</p>
+                </div>
+                <div class="profile-dashboard-actions d-flex flex-wrap gap-2">
+                    <select class="form-select profile-doctor-select" id="profileDoctorSelect"></select>
+                    <button class="btn btn-primary" id="editProfileDashboardBtn">Edit Profile</button>
+                    <button class="btn btn-outline-secondary" id="viewSavedProfileBtn">View Saved Profile</button>
+                </div>
+            </div>
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-3">
+                    <div class="profile-stat-card">
+                        <div class="profile-stat-label">Profile Completion</div>
+                        <div class="profile-stat-value" id="profileCompletionValue">0%</div>
+                        <div class="progress mt-2" role="progressbar">
+                            <div class="progress-bar" id="profileCompletionBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="profile-stat-card">
+                        <div class="profile-stat-label">Specialization</div>
+                        <div class="profile-stat-value small-value" id="profileSpecializationValue">General</div>
+                        <div class="text-muted small" id="profilePrimaryValue">Primary</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="profile-stat-card">
+                        <div class="profile-stat-label">Qualification Tags</div>
+                        <div class="profile-stat-value" id="profileQualificationCount">0</div>
+                        <div class="text-muted small">Verified tags selected</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="profile-stat-card">
+                        <div class="profile-stat-label">Documents</div>
+                        <div class="profile-stat-value" id="profileDocumentCount">0</div>
+                        <div class="text-muted small">Uploaded documents</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-section-card mb-4">
+                <div class="section-title-row">
+                    <div>
+                        <h5 class="mb-1">Appointment Requests</h5>
+                        <p class="text-muted small mb-0">Confirm pending bookings and notify patients.</p>
+                    </div>
+                </div>
+                <div id="profileAppointmentRequests"></div>
+            </div>
+
+            <form id="doctorProfileForm" class="d-none">
+                <div class="profile-section-card mb-4">
+                    <h5 class="section-title">Dr. Profile</h5>
+                    <div class="row g-3">
+                        <div class="col-md-3"><input class="form-control" id="profileFirstName" placeholder="First Name"></div>
+                        <div class="col-md-3"><input class="form-control" id="profileMiddleName" placeholder="Middle Name"></div>
+                        <div class="col-md-3"><input class="form-control" id="profileLastName" placeholder="Last Name"></div>
+                        <div class="col-md-3">
+                            <select class="form-select" id="profileGender">
+                                <option value="">Gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4"><input class="form-control" id="profileInvoiceName" placeholder="Invoice Name"></div>
+                        <div class="col-md-4"><input class="form-control" id="profilePhone" placeholder="Mobile Number"></div>
+                        <div class="col-md-4"><input class="form-control" id="profileEmail" placeholder="Email Address"></div>
+                        <div class="col-md-4"><input class="form-control" id="profileRegistrationNumber" placeholder="Registration Number"></div>
+                        <div class="col-md-4"><input class="form-control" type="number" id="profileExperienceYears" placeholder="Experience (years)"></div>
+                        <div class="col-md-4"><input class="form-control" type="date" id="profileDateOfBirth" placeholder="Date of Birth"></div>
+                        <div class="col-md-6"><input class="form-control" id="profileHealthMantra" placeholder="Health Mantra"></div>
+                        <div class="col-md-6"><input class="form-control" type="number" id="profileConsultationFee" placeholder="Consultation Fee"></div>
+                    </div>
+                </div>
+
+                <div class="profile-section-card mb-4">
+                    <h5 class="section-title">Availability &amp; Slots</h5>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Start Time</label>
+                            <input class="form-control" type="time" id="profileSlotStart">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">End Time</label>
+                            <input class="form-control" type="time" id="profileSlotEnd">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Slot Note</label>
+                            <input class="form-control" id="profileSlotNotes" placeholder="OPD / Online / Evening shift">
+                        </div>
+                    </div>
+                    <label class="form-label">Available Days</label>
+                    <div class="qualification-tags" id="availabilityDaysGroup">
+                        <button type="button" class="qualification-chip availability-chip" data-day="Monday">Monday</button>
+                        <button type="button" class="qualification-chip availability-chip" data-day="Tuesday">Tuesday</button>
+                        <button type="button" class="qualification-chip availability-chip" data-day="Wednesday">Wednesday</button>
+                        <button type="button" class="qualification-chip availability-chip" data-day="Thursday">Thursday</button>
+                        <button type="button" class="qualification-chip availability-chip" data-day="Friday">Friday</button>
+                        <button type="button" class="qualification-chip availability-chip" data-day="Saturday">Saturday</button>
+                        <button type="button" class="qualification-chip availability-chip" data-day="Sunday">Sunday</button>
+                    </div>
+                </div>
+
+                <div class="profile-section-card mb-4">
+                    <h5 class="section-title">Address Details</h5>
+                    <div class="address-tabs mb-3">
+                        <button type="button" class="address-tab active" data-address-type="Home">Home</button>
+                        <button type="button" class="address-tab" data-address-type="Work">Work</button>
+                        <button type="button" class="address-tab" data-address-type="Other">Other</button>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6"><input class="form-control" id="profileAddressLine1" placeholder="Address Line 1"></div>
+                        <div class="col-md-6"><input class="form-control" id="profileLandmark" placeholder="Landmark"></div>
+                        <div class="col-md-4"><input class="form-control" id="profileState" placeholder="State"></div>
+                        <div class="col-md-4"><input class="form-control" id="profileCity" placeholder="City"></div>
+                        <div class="col-md-4"><input class="form-control" id="profilePincode" placeholder="Pincode"></div>
+                    </div>
+                </div>
+
+                <div class="profile-section-card mb-4">
+                    <h5 class="section-title">Account Details</h5>
+                    <div class="row g-3">
+                        <div class="col-md-4"><input class="form-control" id="profileAccountNumber" placeholder="Account Number"></div>
+                        <div class="col-md-4"><input class="form-control" id="profileIfscCode" placeholder="IFSC Code"></div>
+                        <div class="col-md-4"><input class="form-control" id="profileAccountHolderName" placeholder="Account Holder Name"></div>
+                        <div class="col-md-6"><input class="form-control" id="profilePanCardNumber" placeholder="PAN Card Number"></div>
+                        <div class="col-md-6"><input class="form-control" id="profileHospital" placeholder="Hospital / Clinic"></div>
+                    </div>
+                </div>
+
+                <div class="profile-section-card mb-4">
+                    <h5 class="section-title">Specialization &amp; Qualification</h5>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <select class="form-select" id="profileSpecialization">
+                                <option value="">Select Specialization</option>
+                                <option>General</option>
+                                <option>Cardiology</option>
+                                <option>Pediatrics</option>
+                                <option>Neurology</option>
+                                <option>Orthopedics</option>
+                                <option>Dermatology</option>
+                                <option>ENT</option>
+                                <option>Gynecology</option>
+                                <option>Oncology</option>
+                                <option>Psychiatry</option>
+                                <option>Pulmonology</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6"><input class="form-control" id="profileLicenseNumber" placeholder="Medical License Number"></div>
+                    </div>
+                    <div class="qualification-tags" id="qualificationTags">
+                        <button type="button" class="qualification-chip" data-tag="MBBS">MBBS</button>
+                        <button type="button" class="qualification-chip" data-tag="MD">MD</button>
+                        <button type="button" class="qualification-chip" data-tag="MS">MS</button>
+                        <button type="button" class="qualification-chip" data-tag="DM">DM</button>
+                        <button type="button" class="qualification-chip" data-tag="MCh">MCh</button>
+                        <button type="button" class="qualification-chip" data-tag="GENERAL">GENERAL</button>
+                    </div>
+                    <div class="row g-3 mt-1">
+                        <div class="col-md-3">
+                            <label class="upload-btn">
+                                Upload Aadhaar Front
+                                <input type="file" class="d-none document-input" id="docAadhaarFront" data-doc-key="aadharFrontName" accept=".pdf,.png,.jpg,.jpeg">
+                            </label>
+                            <div class="upload-file-name" id="docAadhaarFrontName">No file chosen</div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="upload-btn">
+                                Upload PAN Card
+                                <input type="file" class="d-none document-input" id="docPanCard" data-doc-key="panCardName" accept=".pdf,.png,.jpg,.jpeg">
+                            </label>
+                            <div class="upload-file-name" id="docPanCardName">No file chosen</div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="upload-btn">
+                                Upload Aadhaar Back
+                                <input type="file" class="d-none document-input" id="docAadhaarBack" data-doc-key="aadharBackName" accept=".pdf,.png,.jpg,.jpeg">
+                            </label>
+                            <div class="upload-file-name" id="docAadhaarBackName">No file chosen</div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="upload-btn">
+                                Upload Cancelled Cheque
+                                <input type="file" class="d-none document-input" id="docCancelledCheque" data-doc-key="cancelledChequeName" accept=".pdf,.png,.jpg,.jpeg">
+                            </label>
+                            <div class="upload-file-name" id="docCancelledChequeName">No file chosen</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg px-5">Save Doctor Profile</button>
+                </div>
+            </form>
+
+            <div class="profile-section-card d-none" id="doctorProfilePreview">
+                <h5 class="section-title">Saved Doctor Profile</h5>
+                <div id="doctorProfilePreviewBody"></div>
+            </div>
+        </section>
+
+        <!-- doctors grid (dynamic) -->
+        <div class="row" id="doctorsGrid"></div>
+    </div>
+
+    <!-- ADD MODAL -->
+    <div class="modal fade" id="doctorModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Add Doctor</h5>
+                    <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-2">
+                        <div class="col-md-6">
+                            <label class="form-label">Full Name</label>
+                            <input class="form-control" placeholder="Dr. Full Name" id="doctorName">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Specialization</label>
+                            <select class="form-select" id="doctorSpecialization">
+                                <option value="">Select Specialization</option>
+                                <option>General</option>
+                                <option>Cardiology</option>
+                                <option>Pediatrics</option>
+                                <option>Neurology</option>
+                                <option>Orthopedics</option>
+                                <option>Dermatology</option>
+                                <option>ENT</option>
+                                <option>Gynecology</option>
+                                <option>Oncology</option>
+                                <option>Psychiatry</option>
+                                <option>Pulmonology</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email Address</label>
+                            <input class="form-control" placeholder="doctor@example.com" id="doctorEmail" value="ksonukumar875746@gmail.com">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Phone Number</label>
+                            <input class="form-control" placeholder="8757463157" id="doctorPhone" value="8757463157">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Hospital/Clinic</label>
+                            <input class="form-control" placeholder="Hospital or Clinic Name" id="doctorHospital">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Medical License Number</label>
+                            <input class="form-control" placeholder="License Number" id="doctorLicenseNumber">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Status</label>
+                            <select class="form-select" id="doctorStatus">
+                                <option value="active">Active</option>
+                                <option value="on leave">On Leave</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Consultation Fee</label>
+                            <input class="form-control" type="number" id="doctorFee" placeholder="700">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" id="saveDoctorBtn">Save Doctor</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SPECIALTY MODAL -->
+    <div class="modal fade" id="bookingSpecialtyModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Choose Specialty</h5>
+                    <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-2">
+                        <div class="col-6"><button class="btn btn-outline-primary w-100 specialty-choose specialty-logo-btn" data-specialty="Cardiology"><i class="fas fa-heartbeat specialty-icon"></i><span>Heart Care</span></button></div>
+                        <div class="col-6"><button class="btn btn-outline-primary w-100 specialty-choose specialty-logo-btn" data-specialty="General"><i class="fas fa-stethoscope specialty-icon"></i><span>General Care</span></button></div>
+                        <div class="col-6"><button class="btn btn-outline-primary w-100 specialty-choose specialty-logo-btn" data-specialty="Pediatrics"><i class="fas fa-baby specialty-icon"></i><span>Pediatrics</span></button></div>
+                        <div class="col-6"><button class="btn btn-outline-primary w-100 specialty-choose specialty-logo-btn" data-specialty="Pulmonology"><i class="fas fa-lungs specialty-icon"></i><span>Lung Care</span></button></div>
+                        <div class="col-6"><button class="btn btn-outline-primary w-100 specialty-choose specialty-logo-btn" data-specialty="Dermatology"><i class="fas fa-hand-sparkles specialty-icon"></i><span>Skin Care</span></button></div>
+                        <div class="col-6"><button class="btn btn-outline-primary w-100 specialty-choose specialty-logo-btn" data-specialty="Orthopedics"><i class="fas fa-bone specialty-icon"></i><span>Bone Care</span></button></div>
+                        <div class="col-6"><button class="btn btn-outline-primary w-100 specialty-choose specialty-logo-btn" data-specialty="Neurology"><i class="fas fa-brain specialty-icon"></i><span>Neurology</span></button></div>
+                        <div class="col-6"><button class="btn btn-outline-primary w-100 specialty-choose specialty-logo-btn" data-specialty="Psychiatry"><i class="fas fa-head-side-virus specialty-icon"></i><span>Mental Health</span></button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DOCTOR DETAIL MODAL with booking form -->
+    <div class="modal fade" id="doctorDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Doctor details</h5>
+                    <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="doctorDetailBody"></div>
+                <div class="modal-footer d-block" id="detailBookingSection" style="display: none;">
+                    <hr>
+                    <h6>Book with <span id="detailDoctorName"></span></h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Your name</label>
+                            <input class="form-control" id="detailPatientName" value="Ravi Kumar">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Your phone</label>
+                            <input class="form-control" id="detailPatientPhone" value="9876543210">
+                        </div>
+                        <div class="col-12">
+                            <label>Your Email</label>
+                            <input class="form-control" id="detailPatientEmail" value="patient@gmail.com">
+                        </div>
+                        <div class="col-12">
+                            <label>Symptoms</label>
+                            <textarea class="form-control" id="detailSymptoms">fever and cough</textarea>
+                        </div>
+                        <div class="col-6">
+                            <label>Date</label>
+                            <input type="date" class="form-control" id="detailDate">
+                        </div>
+                        <div class="col-6">
+                            <label>Time</label>
+                            <input type="time" class="form-control" id="detailTime" value="10:30">
+                        </div>
+                        <div class="col-12 mt-3">
+                            <label class="fw-semibold mb-2 d-block">Online Payment Method</label>
+                            <div class="d-flex flex-wrap gap-2">
+                                <div class="form-check">
+                                    <input class="form-check-input appointment-payment" type="radio" name="appointmentPaymentMethod" id="appointmentPaymentUpi" value="UPI" checked>
+                                    <label class="form-check-label" for="appointmentPaymentUpi">UPI</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input appointment-payment" type="radio" name="appointmentPaymentMethod" id="appointmentPaymentCard" value="Card">
+                                    <label class="form-check-label" for="appointmentPaymentCard">Card</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input appointment-payment" type="radio" name="appointmentPaymentMethod" id="appointmentPaymentBank" value="Net Banking">
+                                    <label class="form-check-label" for="appointmentPaymentBank">Net Banking</label>
+                                </div>
+                            </div>
+                            <div class="small text-muted mt-2">Consultation fee booking ke time online pay karni hogi.</div>
+                        </div>
+                        <div class="col-12" id="appointmentUpiBox">
+                            <label>UPI ID</label>
+                            <input class="form-control" id="appointmentUpiId" placeholder="name@upi">
+                        </div>
+                        <div class="col-12 d-none" id="appointmentCardBox">
+                            <label>Card Number</label>
+                            <input class="form-control" id="appointmentCardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                        </div>
+                        <div class="col-12 d-none" id="appointmentBankBox">
+                            <label>Bank Name</label>
+                            <input class="form-control" id="appointmentBankName" placeholder="State Bank of India">
+                        </div>
+                        <div class="col-12">
+                            <div class="alert alert-light border mt-2 mb-0">
+                                <div class="fw-semibold mb-1">Payment Receiver</div>
+                                <div id="appointmentReceiverInfo">Loading payment account...</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3 d-flex gap-2">
+                        <button class="btn btn-secondary" id="detailCancelBtn">Back</button>
+                        <button class="btn btn-success flex-grow-1" id="detailConfirmBtn">
+                            <span class="btn-text">Pay &amp; Send Request</span>
+                            <span class="spinner-border spinner-border-sm d-none" role="status" id="emailSpinner"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DOCTOR INBOX MODAL -->
+    <div class="modal fade" id="doctorInboxModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5><i class="fas fa-inbox me-2"></i>Doctor Inbox (Pending Requests)</h5>
+                    <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="doctorInbox">
+                    <p class="text-muted">Loading requests...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONFIRMED APPOINTMENTS MODAL -->
+    <div class="modal fade" id="confirmedModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5><i class="fas fa-check-circle me-2"></i>Confirmed Appointments</h5>
+                    <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="confirmedList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ALL REQUESTS HISTORY MODAL -->
+    <div class="modal fade" id="historyModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-secondary text-white">
+                    <h5><i class="fas fa-history me-2"></i>All Requests History</h5>
+                    <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="historyList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUCCESS MODAL -->
+    <div class="modal fade" id="clientSuccessModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5><i class="fas fa-check-circle me-2"></i>Appointment Confirmed!</h5>
+                    <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center p-4">
+                    <i class="fas fa-check-circle text-success fa-4x mb-3"></i>
+                    <h4 id="successMessage">Your appointment is confirmed!</h4>
+                    <p class="mt-3 text-muted" id="successDetail"></p>
+                    <button class="btn btn-primary mt-3" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating buttons -->
+    <div class="floating-buttons">
+        <button class="float-btn inbox" id="openInboxBtn" title="Doctor's Inbox">
+            <i class="fas fa-inbox"></i>
+            <span class="badge-count" id="inboxCountBadge">0</span>
+        </button>
+        <button class="float-btn confirmed" id="openConfirmedBtn" title="Confirmed Appointments">
+            <i class="fas fa-check-circle"></i>
+            <span class="badge-count" id="confirmedCountBadge">0</span>
+        </button>
+        <button class="float-btn history" id="openHistoryBtn" title="All Requests History">
+            <i class="fas fa-history"></i>
+            <span class="badge-count" id="historyCountBadge">0</span>
+        </button>
+    </div>
+
+    <!-- Test Email Button -->
+    <button class="btn btn-warning rounded-pill test-btn" id="testEmailBtn">
+        <i class="fas fa-envelope me-2"></i>Test Email
+    </button>
+
+    <!-- Notification container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../shared/app.js"></script>
+    <!-- Custom JS -->
+    <script src="doctor-connected.js"></script>
+</body>
+</html>

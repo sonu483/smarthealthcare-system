@@ -1,0 +1,513 @@
+{
+  "users": [
+    {
+      "id": "USR-001",
+      "name": "Sonu Admin",
+      "email": "admin@pharmachain.com",
+      "password": "$2b$10$TbPg/YbRWDh.7vz4BaPTk.2.i74fOJqw.BBMSeC.8bUS5aG8N5f2y",
+      "role": "manufacturer",
+      "company": "PharmaChain",
+      "phone": "9876543210",
+      "memberSince": "2026-03-30",
+      "lastLogin": "2026-03-30T10:21:39.963Z"
+    },
+    {
+      "id": "USR-002",
+      "name": "ksonukumar875746",
+      "email": "ksonukumar875746@gmail.com",
+      "password": "$2b$10$7rcHQA/BbU5NfsWW3OFi8ODUlCTcOcDnzQpyAMw9zBZ.DqAfaE7kK",
+      "role": "manufacturer",
+      "company": "PharmaChain",
+      "phone": "",
+      "memberSince": "2026-03-30",
+      "lastLogin": "2026-03-30T10:46:57.156Z"
+    },
+    {
+      "id": "USR-003",
+      "name": "Dr. Ananya Sharma",
+      "email": "doctor@pharmachain.com",
+      "password": "$2b$10$A.FwETaueJtNmCkvvAKtUOtHrSMNmf/C1aWNIaMw3m.7eLOPq8Ev.",
+      "role": "doctor",
+      "company": "City General Hospital",
+      "phone": "8757463157",
+      "memberSince": "2026-04-01",
+      "lastLogin": "2026-04-01T08:00:00.000Z"
+    }
+  ],
+  "doctors": [
+    {
+      "id": "DOC-001",
+      "name": "Dr. Ananya Sharma",
+      "specialization": "Cardiology",
+      "email": "ksonukumar875746@gmail.com",
+      "phone": "8757463157",
+      "hospital": "City General Hospital",
+      "status": "active",
+      "fee": 1200
+    },
+    {
+      "id": "DOC-002",
+      "name": "Dr. Rajesh Kumar",
+      "specialization": "Pediatrics",
+      "email": "ksonukumar875746@gmail.com",
+      "phone": "8757463158",
+      "hospital": "St. Mary's Medical Center",
+      "status": "active",
+      "fee": 900
+    },
+    {
+      "id": "DOC-003",
+      "name": "Dr. Meera Nair",
+      "specialization": "Neurology",
+      "email": "ksonukumar875746@gmail.com",
+      "phone": "8757463159",
+      "hospital": "Neuro Care Institute",
+      "status": "active",
+      "fee": 1600
+    },
+    {
+      "id": "DOC-004",
+      "name": "Dr. Arjun Patel",
+      "specialization": "Orthopedics",
+      "email": "ksonukumar875746@gmail.com",
+      "phone": "8757463160",
+      "hospital": "Bone and Joint Center",
+      "status": "active",
+      "fee": 1400
+    },
+    {
+      "id": "DOC-005",
+      "name": "Dr. Sana Iqbal",
+      "specialization": "Dermatology",
+      "email": "ksonukumar875746@gmail.com",
+      "phone": "8757463161",
+      "hospital": "Skin Wellness Clinic",
+      "status": "active",
+      "fee": 1100
+    },
+    {
+      "id": "DOC-006",
+      "name": "Dr. Rohit Verma",
+      "specialization": "ENT",
+      "email": "ksonukumar875746@gmail.com",
+      "phone": "8757463162",
+      "hospital": "Hearing and Sinus Hospital",
+      "status": "active",
+      "fee": 950
+    },
+    {
+      "id": "DOC-007",
+      "name": "Dr. Nisha Thomas",
+      "specialization": "Gynecology",
+      "email": "ksonukumar875746@gmail.com",
+      "phone": "8757463163",
+      "hospital": "Women Care Center",
+      "status": "active",
+      "fee": 1300
+    },
+    {
+      "id": "DOC-008",
+      "name": "Dr. Karan Malhotra",
+      "specialization": "Oncology",
+      "email": "ksonukumar875746@gmail.com",
+      "phone": "8757463164",
+      "hospital": "Cancer Research Hospital",
+      "status": "on leave",
+      "fee": 2000
+    },
+    {
+      "id": "DOC-009",
+      "name": "Dr. Pooja Singh",
+      "specialization": "Psychiatry",
+      "email": "ksonukumar875746@gmail.com",
+      "phone": "8757463165",
+      "hospital": "Mind Care Clinic",
+      "status": "active",
+      "fee": 1250
+    },
+    {
+      "id": "DOC-010",
+      "name": "Dr. Vivek Rao",
+      "specialization": "Pulmonology",
+      "email": "ksonukumar875746@gmail.com",
+      "phone": "8757463166",
+      "hospital": "Respira Chest Center",
+      "status": "active",
+      "fee": 1500
+    }
+  ],
+  "hospitals": [
+    {
+      "id": "H-001",
+      "name": "City General Hospital",
+      "type": "general",
+      "email": "info@citygeneral.com",
+      "phone": "+91 9876500001",
+      "address": "123 Main Street",
+      "city": "Patna",
+      "state": "Bihar",
+      "zip": "800001",
+      "license": "LIC123456",
+      "capacity": 500,
+      "services": "Emergency, Surgery, ICU, Cardiology",
+      "status": "active",
+      "accreditation": "JCI",
+      "createdAt": "2026-03-30"
+    },
+    {
+      "id": "H-002",
+      "name": "St. Mary's Medical Center",
+      "type": "teaching",
+      "email": "contact@stmarys.org",
+      "phone": "+91 9876500002",
+      "address": "456 Oak Avenue",
+      "city": "Ranchi",
+      "state": "Jharkhand",
+      "zip": "834001",
+      "license": "LIC234567",
+      "capacity": 750,
+      "services": "Emergency, Oncology, Pediatrics, Research",
+      "status": "active",
+      "accreditation": "NABH",
+      "createdAt": "2026-03-30"
+    }
+  ],
+  "medicines": [
+    {
+      "id": 1,
+      "name": "Aspirin 100mg",
+      "category": "Pain Relief",
+      "price": 12.99,
+      "stock": 250,
+      "status": "In Stock",
+      "description": "Used for pain relief and reducing fever.",
+      "expiry": "2027-12-31"
+    },
+    {
+      "id": 2,
+      "name": "Amoxicillin 500mg",
+      "category": "Antibiotic",
+      "price": 24.99,
+      "stock": 15,
+      "status": "Low Stock",
+      "description": "Antibiotic for bacterial infections.",
+      "expiry": "2027-06-30"
+    },
+    {
+      "id": 3,
+      "name": "Insulin Glargine",
+      "category": "Diabetes",
+      "price": 45.99,
+      "stock": 80,
+      "status": "In Stock",
+      "description": "Long-acting insulin for diabetes.",
+      "expiry": "2027-09-30"
+    },
+    {
+      "id": 4,
+      "name": "Paracetamol 500mg",
+      "category": "Pain Relief",
+      "price": 10,
+      "stock": 157,
+      "status": "In Stock",
+      "description": "Fever and mild pain relief tablet.",
+      "expiry": "2027-03-31"
+    },
+    {
+      "id": 5,
+      "name": "Ibuprofen 400mg",
+      "category": "Pain Relief",
+      "price": 14.5,
+      "stock": 124,
+      "status": "In Stock",
+      "description": "Anti-inflammatory tablet for pain and swelling.",
+      "expiry": "2027-07-30"
+    },
+    {
+      "id": 6,
+      "name": "Azithromycin 500mg",
+      "category": "Antibiotic",
+      "price": 32,
+      "stock": 48,
+      "status": "In Stock",
+      "description": "Antibiotic used for bacterial infections.",
+      "expiry": "2027-11-15"
+    },
+    {
+      "id": 7,
+      "name": "Cefixime 200mg",
+      "category": "Antibiotic",
+      "price": 28,
+      "stock": 36,
+      "status": "In Stock",
+      "description": "Broad-spectrum antibiotic tablet.",
+      "expiry": "2027-09-20"
+    },
+    {
+      "id": 8,
+      "name": "Metformin 500mg",
+      "category": "Diabetes",
+      "price": 18.25,
+      "stock": 95,
+      "status": "In Stock",
+      "description": "Oral medicine for blood sugar control.",
+      "expiry": "2028-01-10"
+    },
+    {
+      "id": 9,
+      "name": "Glimepiride 2mg",
+      "category": "Diabetes",
+      "price": 16.75,
+      "stock": 60,
+      "status": "In Stock",
+      "description": "Anti-diabetic tablet for type 2 diabetes.",
+      "expiry": "2027-12-18"
+    },
+    {
+      "id": 10,
+      "name": "Pantoprazole 40mg",
+      "category": "Gastro",
+      "price": 11.99,
+      "stock": 132,
+      "status": "In Stock",
+      "description": "Reduces stomach acid and acidity.",
+      "expiry": "2028-02-05"
+    },
+    {
+      "id": 11,
+      "name": "Ondansetron 4mg",
+      "category": "Gastro",
+      "price": 13.49,
+      "stock": 52,
+      "status": "In Stock",
+      "description": "Helps prevent nausea and vomiting.",
+      "expiry": "2027-08-08"
+    },
+    {
+      "id": 12,
+      "name": "Cetirizine 10mg",
+      "category": "Allergy",
+      "price": 8.99,
+      "stock": 170,
+      "status": "In Stock",
+      "description": "Anti-allergy tablet for sneezing and itching.",
+      "expiry": "2028-04-14"
+    },
+    {
+      "id": 13,
+      "name": "Montelukast 10mg",
+      "category": "Allergy",
+      "price": 17.25,
+      "stock": 66,
+      "status": "In Stock",
+      "description": "Used for allergy and asthma support.",
+      "expiry": "2027-10-11"
+    },
+    {
+      "id": 14,
+      "name": "Amlodipine 5mg",
+      "category": "Cardiac",
+      "price": 15,
+      "stock": 80,
+      "status": "In Stock",
+      "description": "Blood pressure control medicine.",
+      "expiry": "2028-01-30"
+    },
+    {
+      "id": 15,
+      "name": "Atorvastatin 20mg",
+      "category": "Cardiac",
+      "price": 21,
+      "stock": 54,
+      "status": "In Stock",
+      "description": "Helps control cholesterol levels.",
+      "expiry": "2027-12-01"
+    },
+    {
+      "id": 16,
+      "name": "Salbutamol Inhaler",
+      "category": "Respiratory",
+      "price": 55,
+      "stock": 34,
+      "status": "In Stock",
+      "description": "Quick relief inhaler for breathing difficulty.",
+      "expiry": "2027-06-01"
+    },
+    {
+      "id": 17,
+      "name": "Budesonide Respules",
+      "category": "Respiratory",
+      "price": 63.5,
+      "stock": 26,
+      "status": "In Stock",
+      "description": "Respiratory suspension for nebulization.",
+      "expiry": "2027-05-21"
+    },
+    {
+      "id": 18,
+      "name": "Vitamin B12 Injection",
+      "category": "Injection",
+      "price": 49,
+      "stock": 42,
+      "status": "In Stock",
+      "description": "Injection used for B12 deficiency support.",
+      "expiry": "2027-09-09"
+    },
+    {
+      "id": 19,
+      "name": "Diclofenac Injection",
+      "category": "Injection",
+      "price": 38,
+      "stock": 24,
+      "status": "In Stock",
+      "description": "Pain relief injection for acute pain cases.",
+      "expiry": "2027-08-17"
+    },
+    {
+      "id": 20,
+      "name": "Ceftriaxone Injection 1g",
+      "category": "Injection",
+      "price": 74,
+      "stock": 31,
+      "status": "In Stock",
+      "description": "Antibiotic injection for severe infections.",
+      "expiry": "2027-12-28"
+    },
+    {
+      "id": 21,
+      "name": "Rabies Vaccine Injection",
+      "category": "Injection",
+      "price": 145,
+      "stock": 18,
+      "status": "Low Stock",
+      "description": "Vaccine injection used after animal bite exposure.",
+      "expiry": "2027-07-12"
+    },
+    {
+      "id": 22,
+      "name": "Insulin Regular Injection",
+      "category": "Injection",
+      "price": 92,
+      "stock": 29,
+      "status": "In Stock",
+      "description": "Injectable insulin for short-term sugar control.",
+      "expiry": "2027-11-03"
+    },
+    {
+      "id": 23,
+      "name": "TT Injection",
+      "category": "Injection",
+      "price": 24,
+      "stock": 40,
+      "status": "In Stock",
+      "description": "Tetanus toxoid injection for wound protection.",
+      "expiry": "2028-03-19"
+    },
+    {
+      "id": 24,
+      "name": "Amikacin Injection",
+      "category": "Injection",
+      "price": 58,
+      "stock": 21,
+      "status": "In Stock",
+      "description": "Antibiotic injection for hospital infection care.",
+      "expiry": "2027-10-29"
+    },
+    {
+      "id": 25,
+      "name": "Normal Saline 500ml",
+      "category": "IV Fluid",
+      "price": 35,
+      "stock": 72,
+      "status": "In Stock",
+      "description": "IV fluid used for hydration and medicine dilution.",
+      "expiry": "2028-02-27"
+    },
+    {
+      "id": 26,
+      "name": "Ringer Lactate 500ml",
+      "category": "IV Fluid",
+      "price": 39,
+      "stock": 51,
+      "status": "In Stock",
+      "description": "IV fluid for electrolyte replacement.",
+      "expiry": "2027-09-25"
+    },
+    {
+      "id": 27,
+      "name": "Iron Sucrose Injection",
+      "category": "Injection",
+      "price": 118,
+      "stock": 16,
+      "status": "Low Stock",
+      "description": "Iron replacement injection for deficiency treatment.",
+      "expiry": "2027-11-22"
+    }
+  ],
+  "patients": [
+    {
+      "id": "P-001",
+      "name": "John Smith",
+      "age": 45,
+      "gender": "Male",
+      "bloodGroup": "A+",
+      "contact": "+91 9876500101",
+      "email": "john.smith@email.com",
+      "lastVisit": "2026-03-29",
+      "status": "Active",
+      "address": "Patna",
+      "medicalHistory": "Hypertension, Type 2 Diabetes",
+      "doctor": "Dr. Ananya Sharma",
+      "source": "manual"
+    },
+    {
+      "id": "P-002",
+      "name": "Sarah Johnson",
+      "age": 32,
+      "gender": "Female",
+      "bloodGroup": "O+",
+      "contact": "+91 9876500102",
+      "email": "sarah.j@email.com",
+      "lastVisit": "2026-03-28",
+      "status": "Active",
+      "address": "Ranchi",
+      "medicalHistory": "Asthma",
+      "doctor": "Dr. Rajesh Kumar",
+      "source": "manual"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ORD-001",
+      "patient": "John Smith",
+      "patientId": "P-001",
+      "doctor": "Dr. Ananya Sharma",
+      "doctorId": "DOC-001",
+      "date": "2026-03-28",
+      "amount": "$58.98",
+      "status": "Pending",
+      "medicines": [
+        "Aspirin 100mg",
+        "Amoxicillin 500mg"
+      ],
+      "priority": "normal",
+      "deliveryDate": "2026-04-01",
+      "notes": "Deliver in morning"
+    }
+  ],
+  "appointments": [
+    {
+      "id": "APT-001",
+      "patientName": "Ravi Kumar",
+      "patientPhone": "9876543210",
+      "patientEmail": "ravi@example.com",
+      "symptoms": "fever and cough",
+      "date": "2026-04-02",
+      "time": "10:30",
+      "doctorId": "DOC-001",
+      "doctorName": "Dr. Ananya Sharma",
+      "status": "pending",
+      "timestamp": "2026-03-30T10:00:00.000Z"
+    }
+  ]
+}

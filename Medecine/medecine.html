@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaChain - Medicine Manager</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="medecine.css">
+
+</head>
+<body>
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold medicine-page-title"><i class="fas fa-pills me-2"></i>Medicine Inventory</h2>
+            <div class="medicine-toolbar">
+                <div class="medicine-search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" class="form-control" id="medicineSearchInput" placeholder="Search medicine, category, injection...">
+                </div>
+                <button class="btn medicine-accent-btn" id="medicineSearchBtn" type="button">
+                    <i class="fas fa-search me-2"></i>Search
+                </button>
+                <button class="btn medicine-accent-btn" id="addMedicineBtn" data-bs-toggle="modal" data-bs-target="#medicineModal">
+                    <i class="fas fa-plus me-2"></i>Add Medicine
+                </button>
+            </div>
+        </div>
+
+        <!-- Medicine Cards Grid -->
+        <div class="row" id="medicineGrid"></div>
+
+        <!-- Medicine Table -->
+        <div class="card dashboard-card mt-4">
+            <div class="card-header medicine-summary-header text-white">
+                <h5 class="mb-0">Medicine Summary</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Medicine Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="medicineTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Medicine Modal -->
+    <div class="modal fade" id="medicineModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header medicine-summary-header text-white">
+                    <h5 class="modal-title" id="medicineModalTitle">Add New Medicine</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="medicineForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="medicineName" class="form-label">Medicine Name</label>
+                                <input type="text" class="form-control" id="medicineName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="medicineCategory" class="form-label">Category</label>
+                                <select class="form-select" id="medicineCategory" required>
+                                    <option value="">Select Category</option>
+                                    <option value="antibiotic">Antibiotic</option>
+                                    <option value="pain_relief">Pain Relief</option>
+                                    <option value="diabetes">Diabetes</option>
+                                    <option value="cardiovascular">Cardiovascular</option>
+                                    <option value="respiratory">Respiratory</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="medicinePrice" class="form-label">Price ($)</label>
+                                <input type="number" class="form-control" id="medicinePrice" step="0.01" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="medicineStock" class="form-label">Stock Quantity</label>
+                                <input type="number" class="form-control" id="medicineStock" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="medicineDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="medicineDescription" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="medicineExpiry" class="form-label">Expiry Date</label>
+                            <input type="date" class="form-control" id="medicineExpiry" required>
+                        </div>
+                        <input type="hidden" id="medicineId">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success" id="saveMedicineBtn">Save Medicine</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../shared/app.js"></script>
+    <script src="medecine-connected.js" ></script>
+</body>
+</html>

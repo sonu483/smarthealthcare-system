@@ -1,0 +1,36 @@
+
+        body {
+            background: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+        .dashboard-card {
+            border: none;
+            border-left: 4px solid;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+        .bg-info { background-color: #0dcaf0 !important; }
+        .text-info { color: #0dcaf0 !important; }
+        .bg-success { background-color: #198754 !important; }
+        .bg-warning { background-color: #ffc107 !important; }
+        .bg-secondary { background-color: #6c757d !important; }
+        .badge-appointment { background-color: #cfe2ff; color: #084298; }
+        .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            max-width: 350px;
+        }
+        .notification {
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }

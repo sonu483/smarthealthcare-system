@@ -1,0 +1,84 @@
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f7fc;
+        }
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 30px;
+        }
+        .dashboard-card {
+            border: none;
+            border-left: 4px solid;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        .wallet-connected {
+            border: 2px solid #28a745;
+            background-color: #f0fff4;
+        }
+        .network-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .network-ethereum { background: #627eea; color: white; }
+        .network-polygon { background: #8247e5; color: white; }
+        .network-bsc { background: #f0b90b; color: black; }
+        .balance-display {
+            font-size: 24px;
+            font-weight: bold;
+            color: #28a745;
+        }
+        .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            max-width: 350px;
+        }
+        .notification {
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .wallet-details {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        .copy-btn {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .copy-btn:hover {
+            color: #667eea;
+        }
+        .blockchain-card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 12px 28px rgba(26, 43, 76, 0.08);
+            background: linear-gradient(180deg, #ffffff, #f7fbff);
+        }
+        .blockchain-points {
+            padding-left: 18px;
+            color: #1f3c78;
+        }
+        .blockchain-points li {
+            margin-bottom: 8px;
+        }
+    

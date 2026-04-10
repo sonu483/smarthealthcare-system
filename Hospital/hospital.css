@@ -1,0 +1,146 @@
+        /* Custom CSS for Hospital Cards */
+        :root {
+            --primary: #0d6efd;
+            --secondary: #6c757d;
+            --success: #198754;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --info: #0dcaf0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f6a3e8;
+            padding: 20px;
+        }
+        .dashboard-card {
+            border: none;
+            border-left: 4px solid;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+        /* Hospital Cards */
+        .hospital-card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .hospital-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .hospital-card .card-header {
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            padding: 15px;
+            border-bottom: none;
+        }
+        .hospital-card .card-header h5 {
+            margin: 0;
+            font-weight: 600;
+            color: white;
+        }
+        .hospital-card .card-body {
+            padding: 20px;
+        }
+        .hospital-card .badge {
+            padding: 5px 10px;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+        .hospital-card p {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .hospital-card p i {
+            width: 20px;
+            color: #0d6efd;
+        }
+        /* Capacity Meter */
+        .capacity-meter {
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .capacity-meter-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745 0%, #ffc107 50%, #dc3545 100%);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        .capacity-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #6c757d;
+        }
+        /* Services Tags */
+        .hospital-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin: 10px 0;
+        }
+        .service-tag {
+            background: #011a32;
+            color: #0d6efd;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        /* Quick Actions */
+        .hospital-quick-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            border-top: 1px solid #dee2e6;
+            padding-top: 15px;
+        }
+        .hospital-quick-actions button {
+            flex: 1;
+            padding: 8px;
+            font-size: 12px;
+            border-radius: 5px;
+        }
+        /* Empty State */
+        .hospital-empty-state {
+            text-align: center;
+            padding: 50px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .hospital-empty-state i {
+            font-size: 60px;
+            color: #dee2e6;
+            margin-bottom: 20px;
+        }
+        .hospital-empty-state h5 {
+            color: #495057;
+            margin-bottom: 10px;
+        }
+        .hospital-empty-state p {
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+        /* Notification Container */
+        .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            max-width: 350px;
+        }
+        .notification {
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }

@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaChain | Secure Medicine Tracking</title>
+    <!-- Bootstrap 5 for responsive design -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="login.css">
+    
+</head>
+<body>
+    <!-- Auth Container (Login & Register) -->
+    <div class="auth-page" id="authPage">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-8">
+                    <div class="auth-container" id="authContainer">
+                        <div class="row g-0">
+                            <!-- Left Side - Brand Info -->
+                            <div class="col-lg-5 d-none d-lg-block">
+                                <div class="auth-left">
+                                    <div class="auth-logo-wrap">
+                                        <img src="logo_hd_no_bg.png" alt="SMART Healthcare System Logo" class="auth-logo-image">
+                                    </div>
+                                    <div class="auth-brand">
+                                        SMART Healthcare System
+                                    </div>
+                                    <h3 class="mb-4" id="authTitle">Smart Healthcare and Medicine Tracking Platform</h3>
+                                    <div class="auth-feature">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <div>
+                                            <h5>Anti-Counterfeiting</h5>
+                                            <p>Blockchain-verified medicine authenticity</p>
+                                        </div>
+                                    </div>
+                                    <div class="auth-feature">
+                                        <i class="fas fa-history"></i>
+                                        <div>
+                                            <h5>Full Traceability</h5>
+                                            <p>Track from manufacturer to patient</p>
+                                        </div>
+                                    </div>
+                                    <div class="auth-feature">
+                                        <i class="fas fa-user-lock"></i>
+                                        <div>
+                                            <h5>Secure Access</h5>
+                                            <p>Role-based permissions for all users</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Right Side - Forms -->
+                            <div class="col-lg-7">
+                                <!-- Login Form (Default) -->
+                                <div class="p-5" id="loginFormContainer">
+                                    <h2 class="fw-bold mb-4">Welcome Back</h2>
+                                    <p class="text-muted mb-4">Please login to access the PharmaChain platform</p>
+                                    
+                                    <form id="loginForm">
+                                        <div class="mb-3">
+                                            <label for="loginEmail" class="form-label">Email Address</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-envelope"></i>
+                                                </span>
+                                                <input type="email" class="form-control" id="loginEmail" 
+                                                       placeholder="name@company.com" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label for="loginPassword" class="form-label">Password</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-lock"></i>
+                                                </span>
+                                                <input type="password" class="form-control" id="loginPassword" 
+                                                       placeholder="Enter your password" required>
+                                                <button class="btn btn-outline-secondary" type="button" 
+                                                        id="toggleLoginPassword">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-4">
+                                            <label class="form-label">Select Your Role</label>
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <div class="user-role" data-role="manufacturer">
+                                                        <i class="fas fa-industry"></i>
+                                                        <h6>Manufacturer</h6>
+                                                        <small>Register medicine batches</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="user-role" data-role="distributor">
+                                                        <i class="fas fa-truck"></i>
+                                                        <h6>Distributor</h6>
+                                                        <small>Track shipments</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="user-role" data-role="pharmacy">
+                                                        <i class="fas fa-clinic-medical"></i>
+                                                        <h6>Pharmacy</h6>
+                                                        <small>Verify & dispense</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="user-role" data-role="patient">
+                                                        <i class="fas fa-user-md"></i>
+                                                        <h6>Patient</h6>
+                                                        <small>Check authenticity</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="user-role" data-role="doctor">
+                                                        <i class="fas fa-stethoscope"></i>
+                                                        <h6>Doctor</h6>
+                                                        <small>Manage appointments</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="user-role" data-role="admin">
+                                                        <i class="fas fa-user-shield"></i>
+                                                        <h6>Admin</h6>
+                                                        <small>Full control</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" id="loginUserRole" value="manufacturer">
+                                        </div>
+                                        
+                                        <div class="d-grid gap-2">
+                                            <button type="button" class="btn btn-primary btn-lg" onclick="loginUser()">
+                                                Login to Platform
+                                            </button>
+                                            <button type="button" class="btn btn-outline-primary btn-lg" 
+                                                    id="demoLogin">
+                                                <i class="fas fa-rocket me-2"></i>Quick Demo Access
+                                            </button>
+                                            <button type="button" class="btn btn-outline-dark btn-lg" id="adminLogin">
+                                                <i class="fas fa-user-shield me-2"></i>Admin Login
+                                            </button>
+                                            <button type="button" class="btn btn-outline-success btn-lg" id="doctorLogin">
+                                                <i class="fas fa-stethoscope me-2"></i>Doctor Login
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="alert alert-danger mt-3" id="loginError" style="display: none;">
+                                            <i class="fas fa-exclamation-circle me-2"></i>
+                                            <span id="loginErrorMessage"></span>
+                                        </div>
+                                    </form>
+                                    
+                                    <div class="text-center mt-4">
+                                        <p class="text-muted">
+                                            <small>
+                                                Forgot password? 
+                                                <a href="#" class="text-decoration-none" id="forgotPasswordLink">Reset here</a>
+                                            </small>
+                                        </p>
+                                        <p class="text-muted mb-0">
+                                            <small>
+                                                Don't have an account? 
+                                                <a href="#" class="text-decoration-none" id="showRegisterLink">Register here</a>
+                                            </small>
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Register Form (Hidden by Default) -->
+                                <div class="p-5" id="registerFormContainer" style="display: none;">
+                                    <h2 class="fw-bold mb-4">Create Account</h2>
+                                    <p class="text-muted mb-4">Join PharmaChain to secure your pharmaceutical supply chain</p>
+                                    
+                                    <form id="registerForm">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="firstName" class="form-label">First Name</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-user"></i>
+                                                    </span>
+                                                    <input type="text" class="form-control" id="firstName" 
+                                                           placeholder="First Name" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="lastName" class="form-label">Last Name</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-user"></i>
+                                                    </span>
+                                                    <input type="text" class="form-control" id="lastName" 
+                                                           placeholder="Last Name" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label for="registerEmail" class="form-label">Email Address</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-envelope"></i>
+                                                </span>
+                                                <input type="email" class="form-control" id="registerEmail" 
+                                                       placeholder="name@company.com" required>
+                                            </div>
+                                            <div class="form-text">We'll never share your email with anyone else.</div>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label for="company" class="form-label">Company/Organization</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-building"></i>
+                                                </span>
+                                                <input type="text" class="form-control" id="company" 
+                                                       placeholder="Your company name">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label for="phone" class="form-label">Phone Number</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-phone"></i>
+                                                </span>
+                                                <input type="tel" class="form-control" id="phone" 
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label for="registerUserRole" class="form-label">Account Type</label>
+                                            <select class="form-select" id="registerUserRole" required>
+                                                <option value="">Select your role</option>
+                                                <option value="manufacturer">Manufacturer</option>
+                                                <option value="distributor">Distributor</option>
+                                                <option value="pharmacy">Pharmacy</option>
+                                                <option value="patient">Patient</option>
+                                                <option value="doctor">Doctor</option>
+                                                <option value="regulator">Regulator/Government</option>
+                                                <option value="auditor">Auditor</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label for="registerPassword" class="form-label">Password</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-lock"></i>
+                                                </span>
+                                                <input type="password" class="form-control" id="registerPassword" 
+                                                       placeholder="Create a strong password" required>
+                                                <button class="btn btn-outline-secondary" type="button" 
+                                                        id="toggleRegisterPassword">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </div>
+                                            <div class="password-strength mt-2" id="passwordStrength"></div>
+                                            <div class="form-text">
+                                                Password must contain at least 8 characters, including uppercase, lowercase, numbers, and special characters.
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-4">
+                                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-lock"></i>
+                                                </span>
+                                                <input type="password" class="form-control" id="confirmPassword" 
+                                                       placeholder="Confirm your password" required>
+                                                <button class="btn btn-outline-secondary" type="button" 
+                                                        id="toggleConfirmPassword">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </div>
+                                            <div class="form-text" id="passwordMatchText"></div>
+                                        </div>
+                                        
+                                        <div class="form-check mb-4">
+                                            <input class="form-check-input" type="checkbox" id="terms" required>
+                                            <label class="form-check-label" for="terms">
+                                                I agree to the <a href="#" class="text-decoration-none">Terms of Service</a> and <a href="#" class="text-decoration-none">Privacy Policy</a>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-success btn-lg">
+                                                <span id="registerText">Create Account</span>
+                                                <div class="spinner-border spinner-border-sm text-light spinner ms-2" 
+                                                     role="status" id="registerSpinner" style="display: none;">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </div>
+                                            </button>
+                                            <button type="button" class="btn btn-outline-secondary btn-lg" 
+                                                    id="showLoginLink">
+                                                <i class="fas fa-arrow-left me-2"></i>Back to Login
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="alert alert-danger mt-3" id="registerError" style="display: none;">
+                                            <i class="fas fa-exclamation-circle me-2"></i>
+                                            <span id="registerErrorMessage"></span>
+                                        </div>
+                                    </form>
+                                </div>
+                                
+                                <!-- Registration Success (Hidden by Default) -->
+                                <div class="p-5" id="registrationSuccess" style="display: none;">
+                                    <div class="success-animation">
+                                        <i class="fas fa-check-circle"></i>
+                                        <h3 class="mb-3">Registration Successful!</h3>
+                                        <p class="mb-4">Your account has been created successfully. You can now login to access the PharmaChain platform.</p>
+                                        <button type="button" class="btn btn-primary btn-lg" id="goToLoginAfterRegister">
+                                            <i class="fas fa-sign-in-alt me-2"></i>Go to Login
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Forgot Password Form (Hidden by Default) -->
+                                <div class="p-5" id="forgotPasswordContainer" style="display: none;">
+                                    <h2 class="fw-bold mb-4">Reset Password</h2>
+                                    <p class="text-muted mb-4">Enter your email address and we'll send you a link to reset your password.</p>
+                                    
+                                    <form id="forgotPasswordForm">
+                                        <div class="mb-4">
+                                            <label for="resetEmail" class="form-label">Email Address</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-envelope"></i>
+                                                </span>
+                                                <input type="email" class="form-control" id="resetEmail" 
+                                                       placeholder="name@company.com" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary btn-lg">
+                                                <span id="resetText">Send Reset Link</span>
+                                                <div class="spinner-border spinner-border-sm text-light spinner ms-2" 
+                                                     role="status" id="resetSpinner" style="display: none;">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </div>
+                                            </button>
+                                            <button type="button" class="btn btn-outline-secondary btn-lg" 
+                                                    id="showLoginFromForgot">
+                                                <i class="fas fa-arrow-left me-2"></i>Back to Login
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="alert alert-success mt-3" id="resetSuccess" style="display: none;">
+                                            <i class="fas fa-check-circle me-2"></i>
+                                            <span id="resetSuccessMessage">Password reset link has been sent to your email.</span>
+                                        </div>
+                                        
+                                        <div class="alert alert-danger mt-3" id="resetError" style="display: none;">
+                                            <i class="fas fa-exclamation-circle me-2"></i>
+                                            <span id="resetErrorMessage"></span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Main Application (Initially Hidden) -->
+    <div class="main-app" id="mainApp" style="display: none;">
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-outline-light me-3 d-lg-none" id="mobileSidebarToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="#" id="homeNavLink">
+                        <i class="fas fa-prescription-bottle-alt me-2"></i>
+                        <strong>PharmaChain</strong>
+                        <span class="badge bg-light text-dark ms-2" id="userRoleBadge">Manufacturer</span>
+                    </a>
+                </div>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" id="navHome">
+                                <i class="fas fa-home me-1"></i>Home
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-user-circle me-1"></i>
+                                <span id="currentUser">User</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" id="navProfile">
+                                    <i class="fas fa-user me-2"></i>My Profile
+                                </a></li>
+                                <li><a class="dropdown-item" href="#" id="navSettings">
+                                    <i class="fas fa-cog me-2"></i>Settings
+                                </a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" href="#" id="logoutBtn">
+                                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- App Container with Sidebar and Main Content -->
+        <div class="app-container">
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <div class="sidebar-brand">
+                        <i class="fas fa-bars"></i>
+                        <span>Menu</span>
+                    </div>
+                    <button class="toggle-btn" id="sidebarToggle">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                </div>
+                
+                <div class="sidebar-menu">
+                    <div class="menu-section">Main</div>
+                    <a href="#" class="menu-item" data-page="dashboardPage">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    
+                    <div class="menu-section">Management</div>
+                    <a href="#" class="menu-item" data-page="doctorsPage">
+                        <i class="fas fa-user-md"></i>
+                        <span>Doctors</span>
+                    </a>
+                    
+                    <a href="#" class="menu-item" data-page="medicinePage">
+                        <i class="fas fa-pills"></i>
+                        <span>Medicine</span>
+                        <span class="menu-badge">12</span>
+                    </a>
+                    <a href="#" class="menu-item" data-page="ordersPage">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Orders</span>
+                        <span class="menu-badge">3</span>
+                    </a>
+                    <a href="#" class="menu-item" data-page="inventoryPage">
+                        <i class="fas fa-warehouse"></i>
+                        <span>Hospital</span>
+                    </a>
+                    <a href="#" class="menu-item" data-page="patientsPage">
+                        <i class="fas fa-users"></i>
+                        <span>Patients</span>
+                        <span class="menu-badge">24</span>
+                    </a>
+                    
+                    <div class="menu-section">Analytics</div>
+                    <a href="#" class="menu-item" data-page="reportsPage">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Reports</span>
+                    </a>
+                    <a href="#" class="menu-item" data-page="trackingPage">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Tracking</span>
+                    </a>
+                    
+                    <div class="menu-section">Account</div>
+                    <a href="#" class="menu-item" data-page="profilePage">
+                        <i class="fas fa-user-cog"></i>
+                        <span>Profile</span>
+                    </a>
+                    <a href="#" class="menu-item" data-page="settingsPage">
+                        <i class="fas fa-cogs"></i>
+                        <span>Settings</span>
+                    </a>
+                </div>
+                
+                <!-- Sidebar Footer (Version Info) -->
+                <div class="sidebar-footer">
+                    <div class="text-center">
+                        <small class="text-muted">v2.1.0</small>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content" id="mainContent">
+                <!-- Dashboard Page -->
+                <div class="page active" id="dashboardPage">
+                    <div class="container-fluid py-4">
+                        <h2 class="fw-bold mb-4"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</h2>
+                        <p>Dashboard content goes here...</p>
+                    </div>
+                </div>
+
+                <!-- Doctors Page (placeholder) -->
+                <div class="page" id="doctorsPage">
+                    <div class="container-fluid py-4">
+                        <h2 class="fw-bold mb-4"><i class="fas fa-user-md me-2"></i>Doctors Management</h2>
+                        <p>Doctors content goes here...</p>
+                    </div>
+                </div>
+
+                <!-- Medicine Page (placeholder) -->
+                <div class="page" id="medicinePage">
+                    <div class="container-fluid py-4">
+                        <h2 class="fw-bold mb-4"><i class="fas fa-pills me-2"></i>Medicine Management</h2>
+                        <p>Medicine content goes here...</p>
+                    </div>
+                </div>
+
+                <!-- Orders Page (placeholder) -->
+                <div class="page" id="ordersPage">
+                    <div class="container-fluid py-4">
+                        <h2 class="fw-bold mb-4"><i class="fas fa-clipboard-list me-2"></i>Orders</h2>
+                        <p>Orders content goes here...</p>
+                    </div>
+                </div>
+
+                <!-- Hospital Page (inventory) -->
+                <div class="page" id="inventoryPage">
+                    <div class="container-fluid py-4">
+                        <h2 class="fw-bold mb-4"><i class="fas fa-warehouse me-2"></i>Inventory Management</h2>
+                        
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="card inventory-card dashboard-card mb-4">
+                                    <div class="card-header bg-danger text-white">
+                                        <h5 class="mb-0">Low Stock Alert</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Medicine</th>
+                                                        <th>Current Stock</th>
+                                                        <th>Minimum Required</th>
+                                                        <th>Status</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="lowStockTable">
+                                                    <!-- Low stock items will be added by JavaScript -->
+                                                    <tr>
+                                                        <td>Amoxicillin 500mg</td>
+                                                        <td>15</td>
+                                                        <td>50</td>
+                                                        <td><span class="badge bg-danger">Critical</span></td>
+                                                        <td><button class="btn btn-sm btn-outline-warning">Reorder</button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Metformin 500mg</td>
+                                                        <td>8</td>
+                                                        <td>30</td>
+                                                        <td><span class="badge bg-danger">Critical</span></td>
+                                                        <td><button class="btn btn-sm btn-outline-warning">Reorder</button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Lisinopril 10mg</td>
+                                                        <td>22</td>
+                                                        <td>40</td>
+                                                        <td><span class="badge bg-warning">Low</span></td>
+                                                        <td><button class="btn btn-sm btn-outline-warning">Reorder</button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="card dashboard-card mb-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Inventory Summary</h5>
+                                        <div class="mt-4">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span>Total Items</span>
+                                                <strong>156</strong>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span>In Stock</span>
+                                                <strong class="text-success">128</strong>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span>Low Stock</span>
+                                                <strong class="text-warning">18</strong>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <span>Out of Stock</span>
+                                                <strong class="text-danger">10</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card dashboard-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Quick Actions</h5>
+                                        <div class="d-grid gap-2 mt-3">
+                                            <button class="btn btn-outline-primary">
+                                                <i class="fas fa-plus me-2"></i>Add New Item
+                                            </button>
+                                            <button class="btn btn-outline-success">
+                                                <i class="fas fa-file-export me-2"></i>Export Inventory
+                                            </button>
+                                            <button class="btn btn-outline-warning">
+                                                <i class="fas fa-bell me-2"></i>Set Alerts
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Patients Page -->
+                <div class="page" id="patientsPage">
+                    <div class="container-fluid py-4">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h2 class="fw-bold"><i class="fas fa-users me-2"></i>Patients Management</h2>
+                            <button class="btn btn-info" id="addPatientBtn">
+                                <i class="fas fa-plus me-2"></i>Add Patient
+                            </button>
+                        </div>
+                        
+                        <div class="card dashboard-card mb-4">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3 text-center">
+                                        <h3 class="text-info">127</h3>
+                                        <p class="text-muted">Total Patients</p>
+                                    </div>
+                                    <div class="col-md-3 text-center">
+                                        <h3 class="text-success">42</h3>
+                                        <p class="text-muted">Active Today</p>
+                                    </div>
+                                    <div class="col-md-3 text-center">
+                                        <h3 class="text-warning">18</h3>
+                                        <p class="text-muted">Pending Appointments</p>
+                                    </div>
+                                    <div class="col-md-3 text-center">
+                                        <h3 class="text-primary">5</h3>
+                                        <p class="text-muted">New This Week</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header bg-info text-white">
+                                <h5 class="mb-0">Patient Records</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Patient ID</th>
+                                                <th>Name</th>
+                                                <th>Age</th>
+                                                <th>Gender</th>
+                                                <th>Contact</th>
+                                                <th>Last Visit</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="patientsTableBody">
+                                            <!-- Patients will be added by JavaScript -->
+                                            <tr>
+                                                <td><strong>P-001</strong></td>
+                                                <td>John Doe</td>
+                                                <td>45</td>
+                                                <td>Male</td>
+                                                <td>+1 (555) 123-4567</td>
+                                                <td>2023-08-10</td>
+                                                <td><span class="badge bg-success">Active</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary">View</button>
+                                                    <button class="btn btn-sm btn-outline-info ms-1">History</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>P-002</strong></td>
+                                                <td>Sarah Johnson</td>
+                                                <td>32</td>
+                                                <td>Female</td>
+                                                <td>+1 (555) 234-5678</td>
+                                                <td>2023-08-09</td>
+                                                <td><span class="badge bg-success">Active</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary">View</button>
+                                                    <button class="btn btn-sm btn-outline-info ms-1">History</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>P-003</strong></td>
+                                                <td>Mike Brown</td>
+                                                <td>58</td>
+                                                <td>Male</td>
+                                                <td>+1 (555) 345-6789</td>
+                                                <td>2023-08-08</td>
+                                                <td><span class="badge bg-secondary">Inactive</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary">View</button>
+                                                    <button class="btn btn-sm btn-outline-info ms-1">History</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reports Page -->
+                <div class="page" id="reportsPage">
+                    <div class="container-fluid py-4">
+                        <h2 class="fw-bold mb-4"><i class="fas fa-chart-bar me-2"></i>Analytics & Reports</h2>
+                        
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="card reports-card dashboard-card mb-4">
+                                    <div class="card-header" style="background: #6f42c1; color: white;">
+                                        <h5 class="mb-0">Sales Overview</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="chart-container">
+                                            <canvas id="salesChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="card dashboard-card mb-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Top Selling Medicines</h5>
+                                        <div class="mt-3">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span>Aspirin 100mg</span>
+                                                <strong>$1,240</strong>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span>Amoxicillin 500mg</span>
+                                                <strong>$980</strong>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span>Insulin Glargine</span>
+                                                <strong>$850</strong>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <span>Paracetamol 500mg</span>
+                                                <strong>$720</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card dashboard-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Generate Reports</h5>
+                                        <div class="d-grid gap-2 mt-3">
+                                            <button class="btn btn-outline-primary">
+                                                <i class="fas fa-file-medical me-2"></i>Medical Report
+                                            </button>
+                                            <button class="btn btn-outline-success">
+                                                <i class="fas fa-chart-line me-2"></i>Sales Report
+                                            </button>
+                                            <button class="btn btn-outline-warning">
+                                                <i class="fas fa-box me-2"></i>Inventory Report
+                                            </button>
+                                            <button class="btn btn-outline-info">
+                                                <i class="fas fa-user-md me-2"></i>Doctor Performance
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="card dashboard-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Recent Activities</h5>
+                                        <div class="mt-3">
+                                            <div class="activity-item">
+                                                <div class="d-flex justify-content-between">
+                                                    <div>
+                                                        <i class="fas fa-check-circle me-2 text-success"></i>
+                                                        <strong>Order #1234 Delivered</strong>
+                                                    </div>
+                                                    <div class="text-muted">2 hours ago</div>
+                                                </div>
+                                            </div>
+                                            <div class="activity-item">
+                                                <div class="d-flex justify-content-between">
+                                                    <div>
+                                                        <i class="fas fa-user-plus me-2 text-info"></i>
+                                                        <strong>New Patient Registered</strong>
+                                                    </div>
+                                                    <div class="text-muted">1 day ago</div>
+                                                </div>
+                                            </div>
+                                            <div class="activity-item">
+                                                <div class="d-flex justify-content-between">
+                                                    <div>
+                                                        <i class="fas fa-exclamation-triangle me-2 text-warning"></i>
+                                                        <strong>Low Stock Alert</strong>
+                                                    </div>
+                                                    <div class="text-muted">2 days ago</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tracking Page -->
+                <div class="page" id="trackingPage">
+                    <div class="container-fluid py-4">
+                        <h2 class="fw-bold mb-4"><i class="fas fa-map-marker-alt me-2"></i>Medicine Tracking</h2>
+                        
+                        <div class="card dashboard-card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">Track Medicine Package</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="trackingInput" class="form-label">Enter Package ID</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="trackingInput" placeholder="PC-2023-08-12345">
+                                                <button class="btn btn-primary" id="trackPackageBtn">Track</button>
+                                            </div>
+                                        </div>
+                                        
+                                        <div id="trackingResult">
+                                            <div class="alert alert-info">
+                                                Enter a package ID to track its journey from manufacturer to patient.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <h5>Tracking Timeline</h5>
+                                        <div class="tracking-timeline mt-3">
+                                            <div class="timeline-item">
+                                                <div class="timeline-marker bg-success"></div>
+                                                <div class="timeline-content">
+                                                    <h6>Manufactured</h6>
+                                                    <p>MedCo Pharmaceuticals, New York</p>
+                                                    <small class="text-muted">Aug 15, 2023 10:30 AM</small>
+                                                </div>
+                                            </div>
+                                            <div class="timeline-item">
+                                                <div class="timeline-marker bg-info"></div>
+                                                <div class="timeline-content">
+                                                    <h6>Shipped to Distributor</h6>
+                                                    <p>Global Logistics, Chicago</p>
+                                                    <small class="text-muted">Aug 18, 2023 02:15 PM</small>
+                                                </div>
+                                            </div>
+                                            <div class="timeline-item">
+                                                <div class="timeline-marker bg-warning"></div>
+                                                <div class="timeline-content">
+                                                    <h6>Received at Pharmacy</h6>
+                                                    <p>HealthPlus Pharmacy, Los Angeles</p>
+                                                    <small class="text-muted">Aug 22, 2023 11:00 AM</small>
+                                                </div>
+                                            </div>
+                                            <div class="timeline-item">
+                                                <div class="timeline-marker bg-primary"></div>
+                                                <div class="timeline-content">
+                                                    <h6>Dispensed to Patient</h6>
+                                                    <p>Patient: John Doe, ID: P-789012</p>
+                                                    <small class="text-muted">Aug 25, 2023 04:45 PM</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card dashboard-card">
+                                    <div class="card-body text-center">
+                                        <i class="fas fa-qrcode fa-3x text-primary mb-3"></i>
+                                        <h5>QR Code Scanner</h5>
+                                        <p class="text-muted">Scan medicine QR codes to verify authenticity</p>
+                                        <button class="btn btn-outline-primary">Open Scanner</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="card dashboard-card">
+                                    <div class="card-body text-center">
+                                        <i class="fas fa-temperature-low fa-3x text-warning mb-3"></i>
+                                        <h5>Temperature Log</h5>
+                                        <p class="text-muted">Monitor storage conditions</p>
+                                        <button class="btn btn-outline-warning">View Logs</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="card dashboard-card">
+                                    <div class="card-body text-center">
+                                        <i class="fas fa-shield-alt fa-3x text-success mb-3"></i>
+                                        <h5>Verification History</h5>
+                                        <p class="text-muted">View all verification records</p>
+                                        <button class="btn btn-outline-success">View History</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Page -->
+                <div class="page" id="profilePage">
+                    <div class="profile-header">
+                        <div class="container text-center">
+                            <h1 class="display-5 fw-bold">My Profile</h1>
+                            <p class="lead">Manage your account and track your activity</p>
+                        </div>
+                    </div>
+                    
+                    <div class="container">
+                        <!-- Profile Info Card -->
+                        <div class="row">
+                            <div class="col-lg-4 mb-4">
+                                <div class="card profile-card">
+                                    <div class="card-body text-center">
+                                        <div class="profile-avatar" id="profileAvatar">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <h3 class="card-title" id="profileName">John Doe</h3>
+                                        <p class="text-muted" id="profileRole">Manufacturer</p>
+                                        <p class="card-text" id="profileCompany">MedCo Pharmaceuticals</p>
+                                        <div class="mt-3">
+                                            <button class="btn btn-primary me-2" id="editProfileBtn">
+                                                <i class="fas fa-edit me-1"></i>Edit Profile
+                                            </button>
+                                            <button class="btn btn-outline-secondary" id="changeAvatarBtn">
+                                                <i class="fas fa-camera me-1"></i>Change Avatar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Quick Stats -->
+                                <div class="card profile-card mt-4">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Quick Stats</h5>
+                                        <div class="row text-center mt-3">
+                                            <div class="col-6 mb-3">
+                                                <div class="stat-card">
+                                                    <div class="stat-number" id="statPackages">0</div>
+                                                    <div>Packages Tracked</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 mb-3">
+                                                <div class="stat-card">
+                                                    <div class="stat-number" id="statVerifications">0</div>
+                                                    <div>Verifications</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="stat-card">
+                                                    <div class="stat-number" id="statDays">1</div>
+                                                    <div>Days Active</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="stat-card">
+                                                    <div class="stat-number" id="statTransactions">0</div>
+                                                    <div>Transactions</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-8">
+                                <!-- Personal Information -->
+                                <div class="card profile-card mb-4">
+                                    <div class="card-header bg-primary text-white">
+                                        <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Personal Information</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label text-muted">Full Name</label>
+                                                <p class="fw-bold" id="profileFullName">John Doe</p>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label text-muted">Email Address</label>
+                                                <p class="fw-bold" id="profileEmail">john.doe@example.com</p>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label text-muted">Phone Number</label>
+                                                <p class="fw-bold" id="profilePhone">+1 (555) 123-4567</p>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label text-muted">Account Type</label>
+                                                <p><span class="badge-role" id="profileAccountType">Manufacturer</span></p>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label text-muted">Member Since</label>
+                                                <p class="fw-bold" id="profileMemberSince">Today</p>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label text-muted">Last Login</label>
+                                                <p class="fw-bold" id="profileLastLogin">Just now</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Recent Activity -->
+                                <div class="card profile-card mb-4">
+                                    <div class="card-header bg-success text-white">
+                                        <h5 class="mb-0"><i class="fas fa-history me-2"></i>Recent Activity</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="activityList">
+                                            <!-- Activities will be inserted here -->
+                                            <div class="activity-item">
+                                                <div class="d-flex justify-content-between">
+                                                    <div>
+                                                        <i class="fas fa-sign-in-alt me-2 text-success"></i>
+                                                        <strong>Logged in</strong>
+                                                    </div>
+                                                    <div class="text-muted">Just now</div>
+                                                </div>
+                                            </div>
+                                            <div class="activity-item">
+                                                <div class="d-flex justify-content-between">
+                                                    <div>
+                                                        <i class="fas fa-chart-line me-2 text-info"></i>
+                                                        <strong>Viewed dashboard</strong>
+                                                    </div>
+                                                    <div class="text-muted">5 minutes ago</div>
+                                                </div>
+                                            </div>
+                                            <div class="activity-item">
+                                                <div class="d-flex justify-content-between">
+                                                    <div>
+                                                        <i class="fas fa-check-circle me-2 text-success"></i>
+                                                        <strong>Verified package PC-2025-08-A1B2C3</strong>
+                                                    </div>
+                                                    <div class="text-muted">1 hour ago</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Security Settings -->
+                                <div class="card profile-card">
+                                    <div class="card-header bg-warning text-dark">
+                                        <h5 class="mb-0"><i class="fas fa-shield-alt me-2"></i>Security Settings</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label class="form-label">Two-Factor Authentication</label>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="twoFactorSwitch">
+                                                <label class="form-check-label" for="twoFactorSwitch">Enable 2FA for extra security</label>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Change Password</label>
+                                            <button class="btn btn-outline-primary btn-sm" id="changePasswordBtn">
+                                                <i class="fas fa-key me-1"></i>Change Password
+                                            </button>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Session Management</label>
+                                            <button class="btn btn-outline-secondary btn-sm" id="viewSessionsBtn">
+                                                <i class="fas fa-desktop me-1"></i>View Active Sessions
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Page -->
+                <div class="page" id="settingsPage">
+                    <div class="profile-header" style="background: linear-gradient(135deg, var(--warning) 0%, var(--danger) 100%);">
+                        <div class="container text-center">
+                            <h1 class="display-5 fw-bold">Settings</h1>
+                            <p class="lead">Customize your PharmaChain experience</p>
+                        </div>
+                    </div>
+                    
+                    <div class="container py-5">
+                        <div class="row">
+                            <div class="col-lg-8 mx-auto">
+                                <div class="card profile-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title mb-4"><i class="fas fa-sliders-h me-2"></i>Account Settings</h5>
+                                        
+                                        <div class="mb-4">
+                                            <h6>Notification Preferences</h6>
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="checkbox" id="notifyEmail" checked>
+                                                <label class="form-check-label" for="notifyEmail">Email notifications</label>
+                                            </div>
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="checkbox" id="notifySMS" checked>
+                                                <label class="form-check-label" for="notifySMS">SMS notifications</label>
+                                            </div>
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="checkbox" id="notifyPackage" checked>
+                                                <label class="form-check-label" for="notifyPackage">Package verification alerts</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="notifySecurity" checked>
+                                                <label class="form-check-label" for="notifySecurity">Security alerts</label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-4">
+                                            <h6>Privacy Settings</h6>
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="checkbox" id="privacyProfile" checked>
+                                                <label class="form-check-label" for="privacyProfile">Make profile visible to partners</label>
+                                            </div>
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="checkbox" id="privacyActivity" checked>
+                                                <label class="form-check-label" for="privacyActivity">Share activity data (anonymous)</label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-4">
+                                            <h6>Display Preferences</h6>
+                                            <div class="mb-3">
+                                                <label class="form-label">Theme</label>
+                                                <select class="form-select" id="themeSelect">
+                                                    <option value="light">Light</option>
+                                                    <option value="dark">Dark</option>
+                                                    <option value="auto">Auto (System)</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Timezone</label>
+                                                <select class="form-select" id="timezoneSelect">
+                                                    <option value="est">Eastern Time (ET)</option>
+                                                    <option value="cst">Central Time (CT)</option>
+                                                    <option value="mst">Mountain Time (MT)</option>
+                                                    <option value="pst" selected>Pacific Time (PT)</option>
+                                                    <option value="gmt">GMT/UTC</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="d-grid gap-2">
+                                            <button class="btn btn-success" id="saveSettingsBtn">
+                                                <i class="fas fa-save me-2"></i>Save Settings
+                                            </button>
+                                            <button class="btn btn-outline-secondary" id="backToProfileBtn">
+                                                <i class="fas fa-arrow-left me-2"></i>Back to Profile
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js for reports -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="shared/app.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="login-connected.js"></script>
+</body>
+</html>
